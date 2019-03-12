@@ -14,8 +14,14 @@ public class Quick {
 
   public static int partition (int[] data, int s, int e){
     Random ran = new Random();
-    int ranI = (ran.nextInt() % (e - s)) + s;
-    int pivot = data[ranI];
+    int ranI, pivot;
+    if ((e - s) != 0) {
+      ranI = (ran.nextInt() % (e - s)) + s + 1;
+    }
+    else {
+      ranI = e;
+    }
+    pivot = data[ranI];
     int start = 1;
     int end = data.length - 1;
     int hold;
