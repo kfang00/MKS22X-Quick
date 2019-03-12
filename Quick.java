@@ -12,7 +12,7 @@ public class Quick {
  *@return the index of the final position of the pivot element.
  */
 
-  public int partition (int[] data, int s, int e){
+  public static int partition (int[] data, int s, int e){
     Random ran = new Random();
     int ranI = (ran.nextInt() % (e - s)) + s;
     int pivot = data[ranI];
@@ -49,7 +49,7 @@ public class Quick {
 /*return the value that is the kth smallest value of the array. 
  */
   public static int quickselect(int []data, int k){ 
-
+    return 0;
 
   }
 }
