@@ -19,7 +19,7 @@ public class Quick {
       ranI = s;
     }
     else {
-      ranI = (e = s) / 2;
+      ranI = (e + s) / 2;
     }
     pivot = data[ranI];
     if (s != 0) {
@@ -72,7 +72,15 @@ public class Quick {
 /*return the value that is the kth smallest value of the array.
  */
   public static int quickselect(int []data, int k){
-    return 0;
+    pivot = partition(data, 0, data.length - 1);
+    while (pivot != k) {
+      if (pivot < k) {
+        pivot = partition(data, pivot + 1, data.length - 1);
+      }
+      else {
+        pivot = partition();
+      }
+    }
 
   }
 }
