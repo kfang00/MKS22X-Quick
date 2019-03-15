@@ -72,15 +72,15 @@ public class Quick {
 /*return the value that is the kth smallest value of the array.
  */
   public static int quickselect(int []data, int k){
-    pivot = partition(data, 0, data.length - 1);
+    int pivot = partition(data, 0, data.length - 1);
     while (pivot != k) {
       if (pivot < k) {
         pivot = partition(data, pivot + 1, data.length - 1);
       }
       else {
-        pivot = partition();
+        pivot = partition(data, 0, pivot - 1);
       }
     }
-
+    return data[k];
   }
 }
