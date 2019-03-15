@@ -116,6 +116,16 @@ public class Quick {
 /*Modify the array to be in increasing order. 
  */   
   public static void quicksort(int[] data) {
+    quicksortH(data, 0, data.length - 1);
+  }
 
+  private static void quicksortH(int[] data, int s, int e) {
+    int pivot;
+    if (s >= e) {
+      return;
+    }
+    pivot = partition(data, s, e)
+    quicksortH(data, pivot + 1, e);
+    quicksortH(data, s, pivot - 1);
   }
 }
