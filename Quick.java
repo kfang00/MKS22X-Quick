@@ -73,18 +73,23 @@ public class Quick {
     int[] hold = {l, h, m};
     int greatest = l;
     int smallest = l;
+    int sI = 0;
+    int gI = 0;
     for (int a = 0; a < 3; a++) {
       if (hold[a] <= smallest) {
 	smallest = hold[a];
+        sI = a;
       }
       if (hold[a] >= greatest) {
 	greatest = hold[a];
+        gI = a;
       }
     }
-    for (int a = 0; a < 3; a++) {
-      if ((hold[a] != smallest) && (hold[a] != greatest)) {
-	return hold[a];
-      }
+    if ((gI + sI) == 3) {
+      return hold[0];
+    }
+    else if ((gI + sI) == 2) {
+      return hold[1];
     }
     return m;
   }
