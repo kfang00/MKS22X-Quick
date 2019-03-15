@@ -19,7 +19,7 @@ public class Quick {
       ranI = s;
     }
     else {
-      ranI = (e + s) / 2;
+      ranI = findMedian(s, e, (e + s) / 2);
     }
     pivot = data[ranI];
     if ((data.length > 1) && (s != e)) {
@@ -45,7 +45,7 @@ public class Quick {
 	      start += 1;
       }
       else {
-        if (ranF == 0) {
+        if (ranF == 0) { //50% chance of swap
           hold = data[start];
           data[start] = data[end];
   	      data[end] = hold;
@@ -68,6 +68,27 @@ public class Quick {
     }
     return pIdx;
   }
+ 
+  private static int findMedian(int l, int h, int m) {
+    int[] hold = {l, h, m};
+    int greatest = l;
+    int smallest = l;
+    for (int a = 0; a < 3; a++) {
+      if (hold[a] < smallest) {
+	smallest = hold[a];
+      }
+      if (hold[a] > greatest) {
+	greatest = hold[a];
+      }
+    }
+    for (int a = 0; a < 3; a++) {
+      if ((hold[a] != smallest) && (hold[a] != greatest)) {
+	return hold[a];
+      }
+    }
+    return 0;
+  }
+
 
 /*return the value that is the kth smallest value of the array.
  */
@@ -92,4 +113,9 @@ public class Quick {
     return data[pivot];
   }
 
+/*Modify the array to be in increasing order. 
+ */   
+  public static void quicksort(int[] data) {
+
+  }
 }
