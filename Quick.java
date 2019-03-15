@@ -73,14 +73,16 @@ public class Quick {
  */
   public static int quickselect(int []data, int k){
     int pivot = partition(data, 0, data.length - 1);
-    while (pivot != k) {
-      if (pivot < k) {
-        pivot = partition(data, pivot + 1, data.length - 1);
+    int preP = data.length;
+    while (pivot != (k - 1)) {
+      if (pivot < (k - 1)) {
+        pivot = partition(data, pivot + 1, preP - 1);
       }
       else {
-        pivot = partition(data, 0, pivot - 1);
+        preP = pivot;
+        pivot = partition(data, preP + 1, pivot - 1);
       }
     }
-    return data[k];
+    return data[pivot];
   }
 }
