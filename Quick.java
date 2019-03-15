@@ -28,7 +28,7 @@ public class Quick {
     else {
       start = s;
     }
-    int end = data.length - 1;
+    int end = e;
     int hold;
     int pIdx = 0;
     data[ranI] = data[s];
@@ -61,7 +61,7 @@ public class Quick {
       data[start] = pivot;
       pIdx = start;
     }
-    else if ((start != 1)) {
+    else if ((start != s)) {
       data[s] = data[start - 1];
       data[start - 1] = pivot;
       pIdx = start - 1;
@@ -77,15 +77,15 @@ public class Quick {
     int e = data.length - 1;
     while (pivot != k ) {
       if (pivot < k ) {
-	if ((pivot + 1) < data.length) {
+	//if ((pivot + 1) < data.length) {
 	  s = pivot + 1;
-        }
+        //}
         pivot = partition(data, s, e);
       }
       else {
-        if ((pivot - 1) >= 0) {
+        //if ((pivot - 1) >= 0) {
 	  e = pivot - 1;
-        }
+        //}
         pivot = partition(data, s, e);
       }
     }
