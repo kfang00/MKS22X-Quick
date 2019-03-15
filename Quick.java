@@ -124,7 +124,7 @@ public class Quick {
     if (s >= e) {
       return;
     }
-    pivot = partition(data, s, e)
+    pivot = partition(data, s, e);
     quicksortH(data, pivot + 1, e);
     quicksortH(data, s, pivot - 1);
   }
