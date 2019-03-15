@@ -23,7 +23,7 @@ public class Quick {
     }
     pivot = data[ranI];
     if ((data.length > 1) && (s != e)) {
-      start = s + 1;
+      start = s + 1; //where you start b/c pivot is at the s index
     }
     else {
       start = s;
@@ -31,18 +31,18 @@ public class Quick {
     int end = e;
     int hold;
     int pIdx = 0;
-    data[ranI] = data[s];
+    data[ranI] = data[s]; //moving pivot to front
     data[s] = pivot;
     while (start != end) {
       ranF = Math.abs(ran.nextInt() % 2);
       if (data[start] > pivot) {
-	      hold = data[start];
+	      hold = data[start]; //swap
         data[start] = data[end];
 	      data[end] = hold;
-        end = end - 1;
+        end = end - 1; //move the end
       }
       else if (data[start] < pivot) {
-	      start += 1;
+	      start += 1; //do not swap but move the start
       }
       else {
         if (ranF == 0) { //50% chance of swap
@@ -56,7 +56,7 @@ public class Quick {
         }
       }
     }
-    if (data[start] <= pivot) {
+    if (data[start] <= pivot) { //moving the pivot back
       data[s] = data[start];
       data[start] = pivot;
       pIdx = start;
@@ -69,15 +69,15 @@ public class Quick {
     return pIdx;
   }
  
-  private static int findMedian(int l, int h, int m) {
+  private static int findMedian(int l, int h, int m) { //finding median value of the lo,hi, and middle elements.
     int[] hold = {l, h, m};
     int greatest = l;
     int smallest = l;
     for (int a = 0; a < 3; a++) {
-      if (hold[a] < smallest) {
+      if (hold[a] <= smallest) {
 	smallest = hold[a];
       }
-      if (hold[a] > greatest) {
+      if (hold[a] >= greatest) {
 	greatest = hold[a];
       }
     }
@@ -86,7 +86,7 @@ public class Quick {
 	return hold[a];
       }
     }
-    return 0;
+    return m;
   }
 
 
@@ -99,13 +99,13 @@ public class Quick {
     while (pivot != k ) {
       if (pivot < k ) {
 	//if ((pivot + 1) < data.length) {
-	  s = pivot + 1;
+	  s = pivot + 1; //keeping track of previous pivots
         //}
         pivot = partition(data, s, e);
       }
       else {
         //if ((pivot - 1) >= 0) {
-	  e = pivot - 1;
+	  e = pivot - 1; //keeping track of previous pivots
         //}
         pivot = partition(data, s, e);
       }
