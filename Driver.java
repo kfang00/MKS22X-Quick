@@ -66,7 +66,7 @@ public static void fillRandom(int[] data){
 		System.out.println("You have had " + sucesses + " sucesses and " + (tests-sucesses-1) + " failures.");
 		System.out.println( (sucesses == tests-1 ? "CONGRATULATIONS!!!" : "Uh Oh")+" Thats " + (sucesses / (tests-1.0)) * 100 + "% sucess rate.");
 		if (sucesses <= tests-100) {System.out.println("Yikes!!! Maybe he won't test some of those cases right?");}
-		else if (sucesses < tests-1) {System.out.println("Maybe if you compile and run again it will work.");}
+		else if (sucesses < tests-1) {System.out.println("Maybe if you compile and run again it will work.");} 
   	
 int[] data1 = {10, 80, 30, 90, 40, 50, 70};
         //System.out.println(Arrays.toString(data1));

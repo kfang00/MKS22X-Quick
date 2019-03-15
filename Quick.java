@@ -22,17 +22,17 @@ public class Quick {
       ranI = (e + s) / 2;
     }
     pivot = data[ranI];
-    if (s != 0) {
-      start = 1;
+    if ((data.length > 1) && (s != e)) {
+      start = s + 1;
     }
     else {
-      start = 0;
+      start = s;
     }
     int end = data.length - 1;
     int hold;
     int pIdx = 0;
-    data[ranI] = data[0];
-    data[0] = pivot;
+    data[ranI] = data[s];
+    data[s] = pivot;
     while (start != end) {
       ranF = Math.abs(ran.nextInt() % 2);
       if (data[start] > pivot) {
@@ -57,12 +57,12 @@ public class Quick {
       }
     }
     if (data[start] <= pivot) {
-      data[0] = data[start];
+      data[s] = data[start];
       data[start] = pivot;
       pIdx = start;
     }
     else if ((start != 1)) {
-      data[0] = data[start - 1];
+      data[s] = data[start - 1];
       data[start - 1] = pivot;
       pIdx = start - 1;
     }
@@ -73,16 +73,23 @@ public class Quick {
  */
   public static int quickselect(int []data, int k){
     int pivot = partition(data, 0, data.length - 1);
-    int preP = data.length;
-    while (pivot != (k - 1)) {
-      if (pivot < (k - 1)) {
-        pivot = partition(data, pivot + 1, preP - 1);
+    int s = 0;
+    int e = data.length - 1;
+    while (pivot != k ) {
+      if (pivot < k ) {
+	if ((pivot + 1) < data.length) {
+	  s = pivot + 1;
+        }
+        pivot = partition(data, s, e);
       }
       else {
-        preP = pivot;
-        pivot = partition(data, preP + 1, pivot - 1);
+        if ((pivot - 1) >= 0) {
+	  e = pivot - 1;
+        }
+        pivot = partition(data, s, e);
       }
     }
     return data[pivot];
   }
+
 }
