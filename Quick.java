@@ -14,27 +14,25 @@ public class Quick {
 
   public static int partition (int[] data, int s, int e){
     Random ran = new Random();
-    int ranI, pivot, start, ranF;
-    if (e == s) {
-      ranI = s;
-    }
-    else {
-      ranI = findMedian(s, e, (e + s) / 2);
-    }
-    pivot = data[ranI];
+    int pivot, start, hold;
+    int end = e;
     if ((data.length > 1) && (s != e)) {
       start = s + 1; //where you start b/c pivot is at the s index
     }
     else {
       start = s;
     }
-    int end = e;
-    int hold;
-    int pIdx = 0;
-    data[ranI] = data[s]; //moving pivot to front
+    if (e == s) {
+      pivot = s;
+    }
+    else {
+      pivot = findMedian(s, e, (e + s) / 2);
+    }
+    hold = data[pivot];
+    data[pivot] = data[s]; //moving pivot to front
+    pivot = hold;
     data[s] = pivot;
     while (start != end) {
-      ranF = Math.abs(ran.nextInt() % 2);
       if (data[start] > pivot) {
 	      hold = data[start]; //swap
         data[start] = data[end];
@@ -45,7 +43,7 @@ public class Quick {
 	      start += 1; //do not swap but move the start
       }
       else {
-        if (ranF == 0) { //50% chance of swap
+        if (Math.abs(ran.nextInt() % 2) == 0) { //50% chance of swap
           hold = data[start];
           data[start] = data[end];
   	      data[end] = hold;
@@ -59,14 +57,14 @@ public class Quick {
     if (data[start] <= pivot) { //moving the pivot back
       data[s] = data[start];
       data[start] = pivot;
-      pIdx = start;
+      return start;
     }
     else if ((start != s)) {
       data[s] = data[start - 1];
       data[start - 1] = pivot;
-      pIdx = start - 1;
+      return start - 1;
     }
-    return pIdx;
+    return start;
   }
  
   private static int findMedian(int l, int h, int m) { //finding median value of the lo,hi, and middle elements.
@@ -103,20 +101,33 @@ public class Quick {
     int e = data.length - 1;
     while (pivot != k ) {
       if (pivot < k ) {
-	//if ((pivot + 1) < data.length) {
-	  s = pivot + 1; //keeping track of previous pivots
-        //}
+	s = pivot + 1; //keeping track of previous pivots
         pivot = partition(data, s, e);
       }
       else {
-        //if ((pivot - 1) >= 0) {
-	  e = pivot - 1; //keeping track of previous pivots
-        //}
+	e = pivot - 1; //keeping track of previous pivots
         pivot = partition(data, s, e);
       }
     }
     return data[pivot];
   }
+
+  private static void insertionSort(int[] ary, int start, int end) {
+	int hold = 0;
+	int idx = start;
+	int hold1 = 0;
+	for (int a = start + 1; a <= ((end - start) + 1) ; a++) {
+	    hold = ary[a];
+	    idx = a - 1;
+	    while ((idx >= start) && (hold < ary[idx])) {
+		    hold1 = ary[idx];
+		    ary[idx + 1] = hold1; 
+		    idx = idx - 1;
+	    }
+	    ary[idx + 1] = hold;	
+	    //System.out.println(printArray(ary));
+	}
+    }
 
 /*Modify the array to be in increasing order. 
  */   
@@ -129,8 +140,14 @@ public class Quick {
     if (s >= e) {
       return;
     }
+    if ((e - s) < 50) {
+      insertionSort(data, s, e);
+    }
+    else {
     pivot = partition(data, s, e);
     quicksortH(data, pivot + 1, e);
     quicksortH(data, s, pivot - 1);
+    }
+    
   }
 }
