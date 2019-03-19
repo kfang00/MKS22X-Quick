@@ -112,6 +112,7 @@ public class Quick {
       else {
           if (ll == 0) {
 	    ll = start;
+            gl = start;
           }
           else {
  	    gl = start;
