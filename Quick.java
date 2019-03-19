@@ -120,6 +120,7 @@ public class Quick {
         
       }
     }
+    if (ll != 0) {
     if (data[start] < pivot) { //moving the pivot back
       data[s] = data[start];
       data[start] = pivot;
@@ -138,6 +139,21 @@ public class Quick {
     }
     sp[0] = ll;
     sp[1] = gl;
+    }
+    else {
+      if (data[start] <= pivot) { //moving the pivot back
+      data[s] = data[start];
+      data[start] = pivot;
+      sp[0] = start;
+      sp[1] = start;
+      }
+      else if ((start != s)) {
+      data[s] = data[start - 1];
+      data[start - 1] = pivot;
+      sp[0] = start - 1;
+      sp[1] = start - 1;
+      }
+    }
     return sp;
   }
 
